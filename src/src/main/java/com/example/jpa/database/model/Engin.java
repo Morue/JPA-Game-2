@@ -5,13 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
+@Entity 
+@Inheritance (strategy=InheritanceType.JOINED)
 @Table (name="engin")
-public class Engin {
+public abstract class Engin {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,6 +27,12 @@ public class Engin {
 	@ManyToOne
 	@JoinColumn(name="id_avatar")
 	private Avatar avatar;
+
+	
+	
+	public Engin() {
+
+	}
 
 	public Integer getId_engin() {
 		return id_engin;
@@ -49,11 +58,11 @@ public class Engin {
 		this.vitesse_max = vitesse_max;
 	}
 
-	public Avatar getPersonnage() {
+	public Avatar getAvatar() {
 		return avatar;
 	}
 
-	public void setPersonnage(Avatar avatar) {
+	public void setAvatar(Avatar avatar) {
 		this.avatar = avatar;
 	}
 
