@@ -140,7 +140,7 @@ public class Main {
 		query6.setParameter("name", "Doe");
 		
 		Query query7 = em.createQuery("SELECT p FROM Player p");
-		System.out.println(query7.getResultList());
+		System.out.println(query7.getResultList()); 
 		
 
 		em.close();
