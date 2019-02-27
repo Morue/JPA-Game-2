@@ -35,7 +35,7 @@ public class Partie {
 	private Set<Player> player;
 	
 	@ManyToOne
-	@JoinColumn(name="id_personnage")
+	@JoinColumn(name="id_avatar")
 	private Avatar avatar;
 	
 	public Integer getId_partie() {

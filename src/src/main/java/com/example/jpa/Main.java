@@ -128,19 +128,22 @@ public class Main {
 				partie.setNiveau(partie.getNiveau() + 1);
 			}
 			transaction.commit();
-
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("Pas d'ajout de niveau");
 			transaction.rollback();
 		}
-
 		System.out.println(query2.getResultList());
-		
-		Query query6 = em.createQuery("SELECT p FROM Player p WHERE p.nom= :name");
-		query6.setParameter("name", "Doe");
-		
-		Query query7 = em.createQuery("SELECT p FROM Player p");
-		System.out.println(query7.getResultList()); 
+
+			TypedQuery<Player> query6 = em.createQuery("SELECT p1 FROM Player p1 WHERE p.nom= :name", Player.class);
+			query6.setParameter("name", "Doe");
+			Player p1 = query6.getSingleResult();
+			p1.toString();
+
+			TypedQuery<Player> q = em.createQuery("from Player", Player.class);
+			q.getResultList().stream().map(e -> e.getPseudo()).sorted((o1,o2)->{
+				return  (o1.equals(o2)) ? 1: (o2.equals(o1)? -1 :0) ;
+			}).forEach(System.out::println);
 		
 
 		em.close();
